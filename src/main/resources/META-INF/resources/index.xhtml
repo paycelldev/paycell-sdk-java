@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl showDetail="true" sticky="false" />
+		<p:panelGrid columns="2">
+			<h:outputText value="HostAccount" />
+			<p:inputText value="#{paymentController.metaData.hostAccount}" />
+
+			<h:outputText value="Language" />
+			<p:inputText value="#{paymentController.metaData.language}" />
+
+			<h:outputText value="Msisdn" />
+			<p:inputText value="#{paymentController.metaData.msisdn}" />
+
+			<h:outputText value="Amount" />
+			<p:inputText value="#{paymentController.payment.amount}" />
+
+			<h:outputText value="Curreny" />
+			<p:inputText value="#{paymentController.payment.currency}" />
+
+			<h:outputText value="PaymentSecurity" />
+			<p:inputText value="#{paymentController.payment.paymentSecurity}" />
+
+			<h:outputText value="Installments" />
+			<p:dataTable value="#{paymentController.payment.instalmentPlans}"
+				var="instalmentPlan" rowIndexVar="index">
+				<p:column headerText="ID">
+					<h:outputText value="#{index+1}" />
+				</p:column>
+				<p:column headerText="paymentMethodType">
+					<p:inputText value="#{instalmentPlan.paymentMethodType}" />
+				</p:column>
+				<p:column headerText="amount">
+					<p:inputText value="#{instalmentPlan.amount}" />
+				</p:column>
+				<p:column headerText="cardBrand">
+					<p:inputText value="#{instalmentPlan.cardBrand}" />
+				</p:column>
+				<p:column headerText="count">
+					<p:inputText value="#{instalmentPlan.count}" />
+				</p:column>
+				<p:column>
+					<p:commandButton type="button" value="Delete" />
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="New Installment Plan"
+						action="#{paymentController.addNewInstalmentPlan}" update="@form" />
+				</f:facet>
+			</p:dataTable>
+
+			<h:outputText value="PaymentReferenceNumber" />
+			<p:panelGrid columns="2">
+				<p:inputText
+					value="#{paymentController.payment.paymentReferenceNumber}" />
+				<p:commandButton value="Query Status"
+					action="#{paymentController.openQueryStatuPageUrl()}"
+					process="@form" />
+			</p:panelGrid>
+
+			<h:outputText value="Validation Tracking URL" />
+			<h:outputLink value="#{paymentController.paymentUrl}" target="_blank">#{paymentController.paymentUrl}</h:outputLink>
+		</p:panelGrid>
+		<p:commandButton value="Init"
+			action="#{paymentController.initPayment}" update="@form" />
+	</h:form>
+</h:body>
+</html>

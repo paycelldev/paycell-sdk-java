@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl showDetail="true" sticky="false" />
+		<p:panelGrid columns="2">
+			<h:outputText value="PaymentReferenceNumber" />
+			<h:outputText
+				value="#{paymentController.payment.paymentReferenceNumber}" />
+
+			<h:outputText value="Msisdn" />
+			<h:outputText value="#{paymentController.queryStatu.msisdn}" />
+
+			<h:outputText value="Amount" />
+			<h:outputText value="#{paymentController.queryStatu.amount}" />
+
+			<h:outputText value="Currency" />
+			<h:outputText value="#{paymentController.queryStatu.currency}" />
+
+			<h:outputText value="InstallmentCount" />
+			<h:outputText
+				value="#{paymentController.queryStatu.installmentCount}" />
+
+			<h:outputText value="PaymentSecurity" />
+			<h:outputText value="#{paymentController.queryStatu.paymentSecurity}" />
+
+			<h:outputText value="PaymentDate" />
+			<h:outputText value="#{paymentController.queryStatu.paymentDate}" />
+
+			<h:outputText value="ReconcilationDate" />
+			<h:outputText
+				value="#{paymentController.queryStatu.reconcilationDate}" />
+
+			<h:outputText value="AcquirerBankCode" />
+			<h:outputText
+				value="#{paymentController.queryStatu.acquirerbankCode}" />
+
+			<h:outputText value="IssuerBankCode" />
+			<h:outputText value="#{paymentController.queryStatu.issuerBankCode}" />
+
+			<h:outputText value="ApprovalCode" />
+			<h:outputText value="#{paymentController.queryStatu.orderId}" />
+
+			<h:outputText value="ExtraParameters" />
+			<h:outputText value="#{paymentController.queryStatu.extraParameters}" />
+
+			<h:outputText value="Status" />
+			<h:outputText value="#{paymentController.queryStatu.status}" />
+
+			<h:outputText value="StatusExplanation" />
+			<h:outputText
+				value="#{paymentController.queryStatu.statusExplanation}" />
+
+			<h:outputText value="PaymentMethodId" />
+			<h:outputText value="#{paymentController.queryStatu.paymentMethodId}" />
+
+			<h:outputText value="PaymentMethodNumber" />
+			<h:outputText
+				value="#{paymentController.queryStatu.paymentMethodNumber}" />
+
+			<h:outputText value="PaymentMethodType" />
+			<h:outputText
+				value="#{paymentController.queryStatu.paymentMethodType}" />
+
+		</p:panelGrid>
+		<p:panelGrid columns="4">
+			<p:commandButton value="Query Status"
+				action="#{paymentController.queryStatusOfPayment}" update="@form" />
+			<p:commandButton value="Reverse"
+				action="#{paymentController.reversePayment}" update="@form" />
+			<p:inputText value="#{paymentController.refundAmount}" placeholder="Refund Amount"/>
+			<p:commandButton value="Refund"
+				action="#{paymentController.refundPayment}" process="@form" update="@form" />
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>
